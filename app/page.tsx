@@ -4,6 +4,7 @@ import { Music, Users, GraduationCap, Calendar, TrendingUp, Award, ArrowRight } 
 import ArtistCard from '@/components/ArtistCard';
 import EventCard from '@/components/EventCard';
 import LearningCard from '@/components/LearningCard';
+import AnimatedSection from '@/components/AnimatedSection';
 import { artists } from '@/data/artists';
 import { events } from '@/data/events';
 import { learningContent } from '@/data/learning';
@@ -60,13 +61,13 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-slide-down animate-delay-300">
               Amplify Your Music Career in Tanzania
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-secondary">
+            <p className="text-xl md:text-2xl mb-8 text-secondary animate-fade-in animate-delay-500">
               Connect with artists, learn from experts, discover opportunities, and grow your presence in the music industry.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 animate-slide-up animate-delay-900">
               <Link
                 href="/register"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-secondary text-primary hover:bg-secondary-600 transition-colors"
@@ -91,46 +92,54 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 bg-gray-50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm md:text-base text-gray-600">{stat.label}</div>
-              </div>
-            ))}
+        <section className="py-12 bg-gray-50">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <AnimatedSection
+                  key={stat.label}
+                  animation="scale"
+                  delay={index * 250}
+                  className="text-center"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-primary-600 mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm md:text-base text-gray-600">{stat.label}</div>
+                </AnimatedSection>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Features Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-gray-50 to-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <AnimatedSection animation="fade-up" className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Everything You Need to Succeed
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Kipaji Hub provides comprehensive tools and resources for music professionals at every stage of their career.
             </p>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature) => (
-              <div
+            {features.map((feature, index) => (
+              <AnimatedSection
                 key={feature.title}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                animation="fade-up"
+                delay={index * 180}
               >
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-primary-600" />
+                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow h-full">
+                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-primary-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600">{feature.description}</p>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -139,22 +148,30 @@ export default function HomePage() {
       {/* Featured Artists */}
       <section className="py-16 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Featured Artists</h2>
-              <p className="text-gray-600">Discover talented musicians across Tanzania</p>
+          <AnimatedSection animation="fade-left">
+            <div className="flex justify-between items-center mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Featured Artists</h2>
+                <p className="text-gray-600">Discover talented musicians across Tanzania</p>
+              </div>
+              <Link
+                href="/artists"
+                className="text-primary font-semibold hover:text-secondary flex items-center transition-colors"
+              >
+                View All
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </div>
-            <Link
-              href="/artists"
-              className="text-primary font-semibold hover:text-secondary flex items-center transition-colors"
-            >
-              View All
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredArtists.map((artist) => (
-              <ArtistCard key={artist.id} artist={artist} />
+            {featuredArtists.map((artist, index) => (
+              <AnimatedSection
+                key={artist.id}
+                animation="fade-left"
+                delay={index * 180}
+              >
+                <ArtistCard artist={artist} />
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -163,22 +180,30 @@ export default function HomePage() {
       {/* Featured Events */}
       <section className="py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-100 mb-2">Upcoming Events</h2>
-              <p className="text-gray-100">Don`t miss out on these amazing music events</p>
+          <AnimatedSection animation="fade-right">
+            <div className="flex justify-between items-center mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-100 mb-2">Upcoming Events</h2>
+                <p className="text-gray-100">Don`t miss out on these amazing music events</p>
+              </div>
+              <Link
+                href="/events"
+                className="text-primary-100 font-semibold hover:text-secondary flex items-center transition-colors shrink-0"
+              >
+                View All
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </div>
-            <Link
-              href="/events"
-              className="text-primary-100 font-semibold hover:text-secondary flex items-center transition-colors shrink-0"
-            >
-              View All
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
+            {featuredEvents.map((event, index) => (
+              <AnimatedSection
+                key={event.id}
+                animation="fade-right"
+                delay={index * 180}
+              >
+                <EventCard event={event} />
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -187,22 +212,30 @@ export default function HomePage() {
       {/* Learning Section */}
       <section className="py-16 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Popular Courses</h2>
-              <p className="text-gray-600">Learn from industry professionals and enhance your skills</p>
+          <AnimatedSection animation="fade-down">
+            <div className="flex justify-between items-center mb-8">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Popular Courses</h2>
+                <p className="text-gray-600">Learn from industry professionals and enhance your skills</p>
+              </div>
+              <Link
+                href="/learning"
+                className="text-primary font-semibold hover:text-secondary flex items-center transition-colors shrink-0"
+              >
+                View All
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
             </div>
-            <Link
-              href="/learning"
-              className="text-primary font-semibold hover:text-secondary flex items-center transition-colors shrink-0"
-            >
-              View All
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </div>
+          </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredCourses.map((course) => (
-              <LearningCard key={course.id} content={course} />
+            {featuredCourses.map((course, index) => (
+              <AnimatedSection
+                key={course.id}
+                animation="fade-left"
+                delay={index * 180}
+              >
+                <LearningCard content={course} />
+              </AnimatedSection>
             ))}
           </div>
         </div>
@@ -210,14 +243,14 @@ export default function HomePage() {
 
       {/* CTA Section */}
       <section className="py-16 bg-primary-600">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <AnimatedSection animation="scale" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Take Your Music Career to the Next Level?
           </h2>
           <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
             Join thousands of artists, educators, and music professionals on Kipaji Hub today.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <AnimatedSection animation="fade" delay={200} className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/register"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-secondary text-primary hover:bg-secondary-600 transition-colors"
@@ -231,8 +264,8 @@ export default function HomePage() {
             >
               Contact Us
             </Link>
-          </div>
-        </div>
+          </AnimatedSection>
+        </AnimatedSection>
       </section>
     </div>
   );

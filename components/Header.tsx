@@ -21,7 +21,7 @@ export default function Header() {
     <header className="bg-primary shadow-sm sticky top-0 z-50">
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="flex w-full items-center justify-between py-2">
-          <div className="flex items-center">
+          <div className="flex items-center animate-fade-in">
             <Link href="/" className="flex items-center">
               <Image
                 src="/assets/images/logo/logo-text-holizontal.png"
@@ -34,7 +34,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-6">
+          <div className="hidden lg:flex lg:items-center lg:space-x-6 animate-fade-in animate-delay-100">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -46,7 +46,7 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="hidden lg:flex lg:items-center lg:space-x-4">
+          <div className="hidden lg:flex lg:items-center lg:space-x-4 animate-fade-in animate-delay-200">
             <button type="button" aria-label="Search" className="p-2 text-gray-100 hover:text-secondary transition-colors">
               <Search className="h-5 w-5" />
             </button>
@@ -65,7 +65,7 @@ export default function Header() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex lg:hidden">
+          <div className="flex lg:hidden animate-fade-in animate-delay-100">
             <button
               type="button"
               className="text-white hover:text-secondary transition-colors"
