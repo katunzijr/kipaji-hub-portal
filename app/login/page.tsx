@@ -27,7 +27,7 @@ export default function SignInPage() {
 
         {/* Login Form */}
         <div className="bg-white rounded-2xl shadow-2xl p-8">
-          <form className="space-y-6">
+          <form className="space-y-6 text-gray-600">
             {/* Email Field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
